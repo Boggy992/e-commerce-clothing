@@ -26,7 +26,7 @@ class Directory extends React.Component {
                   title: 'sneakers',
                   imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
                   id: 3,
-                  linkUrl: ''
+                  linkUrl: 'sneakers'
                 },
                 {
                   title: 'womens',
@@ -50,8 +50,8 @@ class Directory extends React.Component {
         return (
             <div className='homepage__container'>
                 {
-                    this.state.sections.map(({ title, imageUrl, id, size }) => (
-                        <Card key={id} imageUrl={imageUrl} title={title} size={size}/>
+                    this.state.sections.map(({ id, ...rest }) => (
+                        <Card key={id} {...rest}/>
                     ))
                 }
             </div>

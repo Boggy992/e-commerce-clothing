@@ -5,6 +5,7 @@
     margin-bottom: 25px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     transition: transform 10s ease;
     &:not(:nth-child(3)):not(:last-child) {
         margin-right: 25px;
