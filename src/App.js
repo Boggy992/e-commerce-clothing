@@ -3,12 +3,7 @@ import { Route } from "react-router-dom";
 import './App.css';
 
 import HomePage from './pages/homepage/homepage.content';
-
-const HatsPage = () => (
-  <div>
-    <h2>Hats</h2>
-  </div>
-);
+import HatsPage from './pages/hats-page/hatspage.content';
 
 
 function App() {
