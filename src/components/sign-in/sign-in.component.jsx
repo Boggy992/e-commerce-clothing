@@ -31,12 +31,12 @@ class SignIn extends React.Component {
     }
 
     render() {
-        return ( 
+        return (
             <div className='sign-in'>
                 <h2 className='sign-in__title'>I already have an account</h2>
                 <span className='sign-in__subtitle'>Sign in with your email and password</span>
                 <form className='sign-in__form' onSubmit={this.submitForm}>
-                    <FormInput 
+                    <FormInput
                         className='sign-in__input'
                         name='email'
                         type='email'
@@ -44,7 +44,7 @@ class SignIn extends React.Component {
                         label='email'
                         signInValidation={this.signInValidation}
                     />
-                    <FormInput 
+                    <FormInput
                         className='sign-in__input'
                         name='password'
                         type='password'
@@ -54,12 +54,12 @@ class SignIn extends React.Component {
                     />
                     <div className='sign-in__custom-buttons'>
                         <CustomButton type='submit'>Sign in</CustomButton>
-                        <CustomButton onClick={signInWithGoogle}>Sign in with google</CustomButton>
+                        <CustomButton isGoogleSignIn onClick={signInWithGoogle}>Sign in with google</CustomButton>
                     </div>
                 </form>
             </div>
         )
     }
-}    
+}
 
 export default SignIn;

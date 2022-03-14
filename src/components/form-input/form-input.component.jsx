@@ -5,7 +5,7 @@ import './form-input.style.scss';
 const FormInput = ({ signInValidation, label, ...rest  }) => {
     return (
         <div className='sign-in__input-wrapper'>
-            <input 
+            <input
                 className='sign-in__email sing-in__input'
                 {...rest}
                 onChange={signInValidation}
