@@ -1,0 +1,51 @@
+.sign-in__title {
+    margin-bottom: 15px;
+}
+
+.sign-in__subtitle {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.sign-in__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+}
+
+.sign-in__input-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.sign-in__label {
+    font-size: 18px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.sign-in__input {
+    border: 0;
+    border-bottom: 2px solid black;
+    padding: 2rem 0.5rem;
+    outline: 0;
+}
+
+.sign-in--shrink {
+    transform: translateY(-170%);
+    font-size: 16px;
+}
+
+.sign-in__custom-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+

@@ -9,7 +9,7 @@ const Header = () => {
     return(
         <div className='header'>
             <div className='wrap'>
-                <div class="header__container">
+                <div className="header__container">
                     <Link className='header__logo-container' to='/'>
                         <Logo className='header__logo'/>
                     </Link>

@@ -1,0 +1,20 @@
+.custom-button {
+    flex: 1 1 50%;
+    border: 1px solid transparent;
+    max-width: 100%;
+    padding: 1.2rem 0.5rem;
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    transition: .3s ease;
+    cursor: pointer;
+    &:hover {
+        border: 1px solid black;
+        background: white;
+        color: black;
+    }
+
+    & + .custom-button {
+        margin-left: 25px;
+    }
+}
