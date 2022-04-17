@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 
 import './card.style.scss'
 
@@ -14,4 +13,4 @@ const Card = ({ title, imageUrl, size, linkUrl, history, match }) => (
     </div>
 )
 
-export default withRouter(Card);
+export default Card;

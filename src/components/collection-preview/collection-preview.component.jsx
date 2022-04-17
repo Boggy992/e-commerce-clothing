@@ -1,6 +1,6 @@
 import React from "react";
 
-import ShopCard from '../shopCard/shopCard.component';
+import ShopCard from '../shop-card/shop-card.component';
 
 import './collection-preview.style.scss';
 

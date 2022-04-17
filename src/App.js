@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import './App.css';
 
 import HomePage from './pages/homepage/homepage.content';
@@ -7,7 +7,7 @@ import ShopPage from './pages/shop-page/shop-page.content';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import { auth } from './firebase/firebase.utils';
-
+import { Fragment } from 'react/cjs/react.production.min';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,14 +32,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header currentUser={this.state.currentUser} />
-        <Switch>
-          <Route exact path='/' component={HomePage}></Route>
-          <Route path='/shop' component={ShopPage}></Route>
-          <Route path='/signin' component={SignInAndSignUpPage}></Route>
-        </Switch>
-      </div>
+      <Fragment>
+          <Routes>
+            <Route path='/' element={ <Header currentUser={this.state.currentUser} /> }>
+              <Route index element={<HomePage />} />
+              <Route path='/shop' element={<ShopPage />} />
+              <Route path='/signin' element={<SignInAndSignUpPage />} />
+            </Route>
+          </Routes>
+      </Fragment>
     );
   }
 }

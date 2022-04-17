@@ -18,7 +18,7 @@ class ShopDirectory extends React.Component {
         const data = [...this.state.SHOP_DATA];
 
         return (
-            <div className='shopCard__container'>
+            <div className='shop-card__container'>
                 {
                     data.map(({ id, title, items }) => (
                         <CollectionPreview key={id} title={title} items={items}/>       
