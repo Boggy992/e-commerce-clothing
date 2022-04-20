@@ -1,6 +1,16 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
+import { initializeApp } from 'firebase/app';
+import {
+    getAuth,
+    signInWithRedirect,
+    signInWithPopup,
+    GoogleAuthProvider
+} from 'firebase/auth';
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc
+} from "firebase/firestore";
 
 const config = {
     apiKey: "AIzaSyBFOP8Tvf71QTuyVZYMEYKr7Sbr9du2dNw",
@@ -12,13 +22,42 @@ const config = {
     measurementId: "G-M5FVREM6Z0"
 };
 
-firebase.initializeApp(config);
+const firebaseApp = initializeApp(config);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+const provider = new GoogleAuthProvider();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+provider.setCustomParameters({
+    prompt: 'select_account'
+});
 
-export default firebase;
+export const auth = getAuth();
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const db = getFirestore();
+
+export const createUserDocumentFromAuth = async (userAuth) => {
+    const userDocRef = doc(db, 'users', userAuth.uid);
+
+    const userSnapshot = await getDoc(userDocRef);
+
+    if(!userSnapshot.exists()) {
+        const {
+            displayName,
+            email
+        } = userAuth;
+        const createdAt = new Date();
+
+       try {
+        await setDoc(userDocRef, {
+            createdAt,
+            displayName,
+            email
+        })
+       } catch(error) {
+            console.log(`There is a problem with creating a user ${error.message}`);
+       }
+    }
+
+    return userDocRef;
+}
+

@@ -4,7 +4,7 @@ import './sign-in.component.jsx';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-import { signInWithGoogle } from "../../firebase/firebase.utils.js";
+import { signInWithGooglePopup, createUserDocumentFromAuth } from "../../firebase/firebase.utils.js";
 
 import './sign-in.style.scss';
 
@@ -16,6 +16,11 @@ class SignIn extends React.Component {
             email: '',
             password: ''
         }
+    }
+
+    signInWithGoogle = async () => {
+        const { user } = await signInWithGooglePopup();
+        createUserDocumentFromAuth(user);
     }
 
     submitForm = (event) => {
@@ -54,7 +59,7 @@ class SignIn extends React.Component {
                     />
                     <div className='sign-in__custom-buttons'>
                         <CustomButton type='submit'>Sign in</CustomButton>
-                        <CustomButton isGoogleSignIn onClick={signInWithGoogle}>Sign in with google</CustomButton>
+                        <CustomButton isGoogleSignIn onClick={this.signInWithGoogle}>Sign in with google</CustomButton>
                     </div>
                 </form>
             </div>

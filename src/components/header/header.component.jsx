@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { Fragment } from "react/cjs/react.production.min";
-import { auth } from '../../firebase/firebase.utils'; 
+import { auth } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import './header.style.scss';
 
