@@ -46,8 +46,8 @@
 }
 
 .sign-in--shrink {
-    transform: translateY(-170%);
-    font-size: 16px;
+    transform: translateY(-170%) !important;
+    font-size: 16px !important;
 }
 
 .sign-in__custom-buttons {
@@ -56,8 +56,5 @@
     width: 100%;
 }
 
-.test {
-    display: flex;
-}
 
 

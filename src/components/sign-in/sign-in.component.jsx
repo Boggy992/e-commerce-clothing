@@ -4,10 +4,9 @@ import React from "react";
 import './sign-in.component.jsx';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
-import SignUpForm from '../sign-up/sign-up.component';
 
 import { 
-    auth,
+    // auth,
     signInWithGooglePopup, 
     createUserDocumentFromAuth, 
     // signInWithGoogleRedirect 
@@ -54,34 +53,31 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <div className="sign-container">
-                <div className='sign-in'>
-                    <h2 className='sign-in__title'>I already have an account</h2>
-                    <h3 className='sign-in__subtitle'>Sign in with your email and password</h3>
-                    <form className='sign-in__form' onSubmit={this.submitForm}>
-                        <FormInput
-                            className='sign-in__input'
-                            name='email'
-                            type='email'
-                            value={this.state.email}
-                            label='email'
-                            signInValidation={this.signInValidation}
-                        />
-                        <FormInput
-                            className='sign-in__input'
-                            name='password'
-                            type='password'
-                            label=''
-                            value={this.state.password}
-                            signInValidation={this.signInValidation}
-                        />
-                        <div className='sign-in__custom-buttons'>
-                            <CustomButton type='submit'>Sign in</CustomButton>
-                            <CustomButton isGoogleSignIn onClick={this.logGoogleUser}>Sign in with google</CustomButton>
-                        </div>
-                    </form>
-                </div>
-                <SignUpForm />
+            <div className='sign-in'>
+                <h2 className='sign-in__title'>I already have an account</h2>
+                <h3 className='sign-in__subtitle'>Sign in with your email and password</h3>
+                <form className='sign-in__form' onSubmit={this.submitForm}>
+                    <FormInput
+                        className='sign-in__input'
+                        name='email'
+                        type='email'
+                        value={this.state.email}
+                        label='email'
+                        signInValidation={this.signInValidation}
+                    />
+                    <FormInput
+                        className='sign-in__input'
+                        name='password'
+                        type='password'
+                        label=''
+                        value={this.state.password}
+                        signInValidation={this.signInValidation}
+                    />
+                    <div className='sign-in__custom-buttons'>
+                        <CustomButton type='submit'>Sign in</CustomButton>
+                        <CustomButton isGoogleSignIn onClick={this.logGoogleUser}>Sign in with google</CustomButton>
+                    </div>
+                </form>
             </div>
         )
     }

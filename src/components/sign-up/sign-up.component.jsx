@@ -25,16 +25,20 @@ const SignUpForm = () => {
         email,
         password,
         confirmPassword
-    } = formFields;
+    } = formFields
 
     const handleChange = (e) => {
 
         const {
             name,
             value
-        } = e.target;
+        } = e.target
 
-        setFormFields({...formFields, [name]: value });
+        setFormFields({...formFields, [name]: value })
+    }
+
+    const resetFormFields = () => {
+        setFormFields(defaultInputValues)
     }
 
     const handleSubmit = async (e) => {
@@ -45,9 +49,9 @@ const SignUpForm = () => {
             return
         } 
 
-        await createAuthUserWithEmailAndPassword(email, password, displayName);
-        await createUserDocumentFromAuth(auth.currentUser);
-        setFormFields(defaultInputValues);
+        await createAuthUserWithEmailAndPassword(email, password, displayName)
+        await createUserDocumentFromAuth(auth.currentUser)
+        resetFormFields()
         setFlip(false)
         setSecondFlag(true)
     }
@@ -58,7 +62,6 @@ const SignUpForm = () => {
             <h3 className="sign-up__subtitle">Sign up with your email and password</h3>
             <form className="sign-up__form" onSubmit={handleSubmit}>
                 <SignUpFormInput
-                    className='sign-up__input'
                     name='displayName'
                     type='text'
                     value={displayName}
@@ -66,7 +69,6 @@ const SignUpForm = () => {
                     onHandleChange={handleChange}
                 />
                 <SignUpFormInput
-                    className='sign-up__input'
                     name='email'
                     type='email'
                     value={email}
@@ -74,7 +76,6 @@ const SignUpForm = () => {
                     onHandleChange={handleChange}
                 />
                 <SignUpFormInput
-                    className='sign-up__input'
                     name='password'
                     type='password'
                     value={password}
@@ -82,7 +83,6 @@ const SignUpForm = () => {
                     onHandleChange={handleChange}
                 />
                 <SignUpFormInput
-                    className='sign-up__input'
                     name='confirmPassword'
                     type='password'
                     value={confirmPassword}
