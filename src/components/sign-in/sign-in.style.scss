@@ -1,3 +1,11 @@
+.sign-container {
+    display: flex;
+}
+
+.sign-in {
+    flex: 1 1 50%;
+}
+
 .sign-in__title {
     margin-bottom: 15px;
 }
@@ -33,7 +41,7 @@
 .sign-in__input {
     border: 0;
     border-bottom: 2px solid black;
-    padding: 2rem 0.5rem;
+    padding: 1rem 0.5rem;
     outline: 0;
 }
 
@@ -46,6 +54,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.test {
+    display: flex;
 }
 
 
