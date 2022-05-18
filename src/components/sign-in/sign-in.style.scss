@@ -3,7 +3,8 @@
 }
 
 .sign-in {
-    flex: 1 1 50%;
+    flex: 1 1 0;
+    max-width: 400px;
 }
 
 .sign-in__title {
@@ -56,5 +57,12 @@
     width: 100%;
 }
 
+.sign-in__alert {
+    color: red;
+}
+
+.sign-in__success {
+    color: green;
+}
 
 

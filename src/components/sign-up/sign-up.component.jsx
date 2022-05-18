@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { 
-    createAuthUserWithEmailAndPassword, 
-    auth, 
+import {
+    createAuthUserWithEmailAndPassword,
+    auth,
     createUserDocumentFromAuth
 } from "../../firebase/firebase.utils.js";
 import SignUpFormInput from '../sign-up-form-input/sign-up-form-input.component';
@@ -17,10 +17,9 @@ const defaultInputValues = {
 
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultInputValues);
-    const [flag, setFlip] = useState(false);
-    const [secondFlag, setSecondFlag] = useState(false);
+    const [flag, setFlag] = useState(null);
 
-    const { 
+    const {
         displayName,
         email,
         password,
@@ -45,15 +44,14 @@ const SignUpForm = () => {
         e.preventDefault();
 
         if(password !== confirmPassword) {
-            setFlip(true)
+            setFlag(true)
             return
-        } 
+        }
 
         await createAuthUserWithEmailAndPassword(email, password, displayName)
         await createUserDocumentFromAuth(auth.currentUser)
         resetFormFields()
-        setFlip(false)
-        setSecondFlag(true)
+        setFlag(false)
     }
 
     return (
@@ -89,11 +87,13 @@ const SignUpForm = () => {
                     label='confirmPassword'
                     onHandleChange={handleChange}
                 />
+
                 {
-                    flag ? <span>Please enter correct values...</span> : null
-                }
-                {
-                    secondFlag ? <span className='success-message'>User created successfully.</span> : null
+                    flag !== null ?
+                    (flag ?
+                    <span>Please enter correct values...</span> :
+                    <span>User created successfully.</span>) :
+                    null
                 }
 
                 <button className="custom-button" type="submit">sign up</button>

@@ -1,15 +1,18 @@
 import React from "react";
-// import { getRedirectResult } from "firebase/auth";
+// import {
+//     getRedirectResult
+// } from "firebase/auth";
 
 import './sign-in.component.jsx';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-import { 
+import {
     // auth,
-    signInWithGooglePopup, 
-    createUserDocumentFromAuth, 
-    // signInWithGoogleRedirect 
+    signInWithGooglePopup,
+    createUserDocumentFromAuth,
+    signInUserWithEmailAndPassword,
+    // signInWithGoogleRedirect
 } from "../../firebase/firebase.utils.js";
 
 import './sign-in.style.scss';
@@ -20,13 +23,32 @@ class SignIn extends React.Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            flag: null
         }
     }
 
     logGoogleUser = async () => {
         const { user } = await signInWithGooglePopup();
         createUserDocumentFromAuth(user);
+    }
+
+    logUserWithEmailAndPassword = async () => {
+        const {
+            email,
+            password
+        } = this.state;
+
+        await signInUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            console.log(userCredential);
+            this.setState({ flag: false });
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            this.setState({ flag: true });
+            console.log(errorMessage);
+        });
     }
 
     submitForm = (event) => {
@@ -73,9 +95,16 @@ class SignIn extends React.Component {
                         value={this.state.password}
                         signInValidation={this.signInValidation}
                     />
+                    {
+                        this.state.flag !== null ?
+                            (this.state.flag ?
+                            <span className='sign-in__alert'>Email or password is inccorect.</span> :
+                            <span className='sign-in__success'>Success</span>) :
+                        null
+                    }
                     <div className='sign-in__custom-buttons'>
-                        <CustomButton type='submit'>Sign in</CustomButton>
-                        <CustomButton isGoogleSignIn onClick={this.logGoogleUser}>Sign in with google</CustomButton>
+                        <CustomButton type='submit' onClick={this.logUserWithEmailAndPassword}>Sign in</CustomButton>
+                        <CustomButton type='submit' isGoogleSignIn onClick={this.logGoogleUser}>Sign in with google</CustomButton>
                     </div>
                 </form>
             </div>

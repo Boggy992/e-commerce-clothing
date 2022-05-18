@@ -1,5 +1,6 @@
 .sign-up {
-    flex: 1 1 50%;
+    flex: 1 1 0;
+    max-width: 400px;
 }
 
 .sign-up__title {
@@ -41,5 +42,6 @@
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
+    pointer-events: none;
     transition: transform 0.3s ease;
 }
