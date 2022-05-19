@@ -3,6 +3,8 @@ import React from "react";
 //     getRedirectResult
 // } from "firebase/auth";
 
+import { UserContext } from '../../contexts/user.context'
+
 import './sign-in.component.jsx';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
@@ -41,13 +43,15 @@ class SignIn extends React.Component {
 
         await signInUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            console.log(userCredential);
+            const { user } = userCredential
+            const { setCurrentUser } = this.context;
+            setCurrentUser(user);
             this.setState({ flag: false });
         })
         .catch((error) => {
             const errorMessage = error.message;
-            this.setState({ flag: true });
             console.log(errorMessage);
+            this.setState({ flag: true });
         });
     }
 
@@ -63,7 +67,7 @@ class SignIn extends React.Component {
         this.setState({ [name]: value })
     }
 
-    // componentDidMount() {
+    componentDidMount() {
     //     const getRedirectResponse = async () => {
     //         const response = await getRedirectResult(auth);
     //         if(response) {
@@ -71,7 +75,7 @@ class SignIn extends React.Component {
     //         }
     //     }
     //     getRedirectResponse();
-    // }
+    }
 
     render() {
         return (
@@ -111,5 +115,7 @@ class SignIn extends React.Component {
         )
     }
 }
+
+SignIn.contextType = UserContext;
 
 export default SignIn;
