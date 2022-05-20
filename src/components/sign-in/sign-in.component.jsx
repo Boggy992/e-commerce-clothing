@@ -11,10 +11,10 @@ import CustomButton from '../custom-button/custom-button.component';
 
 import {
     // auth,
-    signInWithGooglePopup,
-    createUserDocumentFromAuth,
-    signInUserWithEmailAndPassword,
+    // createUserDocumentFromAuth,
     // signInWithGoogleRedirect
+    signInWithGooglePopup,
+    signInUserWithEmailAndPassword
 } from "../../firebase/firebase.utils.js";
 
 import './sign-in.style.scss';
@@ -31,8 +31,7 @@ class SignIn extends React.Component {
     }
 
     logGoogleUser = async () => {
-        const { user } = await signInWithGooglePopup();
-        createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     }
 
     logUserWithEmailAndPassword = async () => {
@@ -43,9 +42,9 @@ class SignIn extends React.Component {
 
         await signInUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            const { user } = userCredential
-            const { setCurrentUser } = this.context;
-            setCurrentUser(user);
+            // const { user } = userCredential
+            // const { setCurrentUser } = this.context;
+            // setCurrentUser(user);
             this.setState({ flag: false });
         })
         .catch((error) => {
