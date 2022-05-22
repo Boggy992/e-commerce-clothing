@@ -9,6 +9,12 @@
     padding: 2rem 0;
 }
 
+.header__options {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
 .header__option {
     display: inline-block;
     font-size: 24px;

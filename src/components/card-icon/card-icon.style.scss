@@ -1,0 +1,17 @@
+.card-icon-container {
+    position: relative;
+}
+
+.card-icon-counter {
+    font-size: 13px;
+    font-weight: 550;
+    line-height: 1;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card-icon {
+    width: 28px;
+}

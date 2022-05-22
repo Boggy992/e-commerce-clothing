@@ -1,0 +1,23 @@
+.card-dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 260px;
+    height: 370px;
+    padding: 20px;
+    background: white;
+    border: 2px solid black;
+    z-index: 1;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.card-dropdown--active {
+    opacity: 1;
+    visibility: visible;
+    top: 45px;
+}

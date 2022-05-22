@@ -4,6 +4,8 @@ import { Link, Outlet } from "react-router-dom";
 import { Fragment } from "react/cjs/react.production.min";
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { signOutUser } from '../../firebase/firebase.utils';
+import CardDropdown from '../card-dropdown/card-dropdown.component';
+import CardIcon from '../card-icon/card-icon.component';
 import './header.style.scss';
 
 const Header = () => {
@@ -25,6 +27,8 @@ const Header = () => {
                                 <div className='header__option' onClick={ signOutUser }>SIGN OUT</div> :
                                 <Link className='header__option' to='signin'>SIGN IN</Link>
                             }
+                            <CardIcon />
+                            <CardDropdown />
                         </div>
                     </div>
                 </div>
