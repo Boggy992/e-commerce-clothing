@@ -12,4 +12,4 @@ const CollectionPreview = ({ id, ...rest }) => (
     </div>
 );
 
-export default CollectionPreview;
+// export default CollectionPreview;

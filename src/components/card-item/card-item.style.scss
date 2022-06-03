@@ -1,0 +1,19 @@
+.card-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-img-small {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.card-quantity {
+    &::after {
+        content: 'x';
+        margin: 0 3px;
+    }
+}

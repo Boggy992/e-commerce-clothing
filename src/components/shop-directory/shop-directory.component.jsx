@@ -7,16 +7,16 @@ import './shop-directory.style.scss';
 
 const ShopDirectory = () => {
     const { products } = useContext(ProductsContext);
-   
+
     return (
         <div className='shop-card__container'>
             {
                 products.map(({ id, ...rest }) => (
-                    <ShopCard key={id} {...rest} />    
+                    <ShopCard key={id} id={id} {...rest} />
                 ))
             }
         </div>
-    ) 
+    )
 }
 
 export default ShopDirectory;
