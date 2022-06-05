@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CardContext } from '../../contexts/card-dropdown.context';
+import { Link, Outlet } from "react-router-dom";
 
 import CustomButton from '../custom-button/custom-button.component';
 import CardItem from '../../components/card-item/card-item.component';
@@ -19,7 +20,7 @@ const CardDropdown = () => {
                     })
                 }
             </div>
-            <CustomButton isShopButton>Go to checkout</CustomButton>
+            <Link className='checkout-link' to='/checkout'>Go to checkout</Link>
         </div>
     )
 }

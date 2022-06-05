@@ -38,31 +38,45 @@ const addCardItem = (cardItems, productToAdd) => {
     return [...cardItems, {...productToAdd}]
 }
 
+const removeCardItem = (cardItems, id) => {
+    return [...cardItems.filter((item) => item.id !== id)]
+}
 
 export const CardContext = createContext({
     isCardOpen: false,
     setIsCardOpen: () => null,
     cardItems: [],
     addItemToCard: () => {},
-    cardCount: 0
+    cardCount: 0,
+    removeItemFromCard: () => {},
+    totalPrice: 0
 })
 
 export const CardProvider = ({ children }) => {
     const [ isCardOpen, setIsCardOpen ] = useState(false)
     const [ cardItems, setCardItems ] = useState([])
     const [ cardCount, setCardCount ] = useState(0)
+    const [ totalPrice, setTotalPrice ] = useState(0)
     
     const addItemToCard = (productToAdd) => {
         setCardItems(addCardItem(cardItems, productToAdd))
+    }
+
+    const removeItemFromCard = (id) => {
+        setCardItems(removeCardItem(cardItems, id))
     }
 
     useEffect(() => {
         // DRUGI PARAMETAR REDUCEA JE ELEMENT(CURRENT ELEMENT)
         const total = cardItems.reduce((total, cardItem) => total + cardItem.quantity, 0)
         setCardCount(total)
+
+        const finalPrice = cardItems.reduce((total, cardItem) => total + cardItem.price, 0)
+        setTotalPrice(finalPrice)
+
     }, [ cardItems ])
 
-    const value = { isCardOpen, setIsCardOpen, cardItems, setCardItems, addItemToCard, cardCount }
+    const value = { isCardOpen, setIsCardOpen, cardItems, setCardItems, addItemToCard, cardCount, removeItemFromCard, totalPrice }
 
     return <CardContext.Provider value={value}>{children}</CardContext.Provider>
 }

@@ -30,3 +30,21 @@
 .card-items__title {
     text-align: center;
 }
+
+.checkout-link {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    padding: 1rem 0.5rem;
+    background: black;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+    &:hover  {
+        background: white;
+        color: black;
+        border: 1px solid black;
+    }
+}
