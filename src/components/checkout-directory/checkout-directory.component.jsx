@@ -19,16 +19,16 @@ const CheckoutDirectory = () => {
             </div>
             <div className='checkout-directory__items'>
                 {
-                    !cardItems.length 
+                    !cardItems.length
                     ? <h1 className='checkout-directory__title'>There is no items in shoping card.</h1>
-                    : cardItems.map((cardItem) => 
+                    : cardItems.map((cardItem) =>
                         <CheckoutItem key={cardItem.id} {...cardItem}/>
                     )
                 }
             </div>
             {
-                totalPrice 
-                ? <h2 className='checkout-directory__total-price'>Total price: { totalPrice } $</h2> 
+                totalPrice
+                ? <h2 className='checkout-directory__total-price'>Total price: { totalPrice } $</h2>
                 : null
             }
         </div>

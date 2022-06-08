@@ -15,6 +15,7 @@
 
 .checkout-item__remove {
     text-align: start;
+    cursor: pointer;
 }
 
 .checkout-item__quantity-wrap {
@@ -33,6 +34,7 @@
 }
 
 .checkout-item__quantity-button {
+    cursor: pointer;
     &:nth-of-type(1) {
         svg {
             transform: rotate(180deg);

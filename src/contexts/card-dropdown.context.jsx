@@ -28,9 +28,9 @@ const addCardItem = (cardItems, productToAdd) => {
     const isExsist = cardItems.find((cardItem) => cardItem.id === productToAdd.id)
 
     if(isExsist) {
-        return cardItems.map((cardItem) => 
+        return cardItems.map((cardItem) =>
             cardItem.id === productToAdd.id
-            ? {...cardItem, quantity: cardItem.quantity + 1, price: productToAdd.price + cardItem.price}
+            ? {...cardItem, quantity: cardItem.quantity + 1}
             : cardItem
         )
     }
@@ -42,6 +42,37 @@ const removeCardItem = (cardItems, id) => {
     return [...cardItems.filter((item) => item.id !== id)]
 }
 
+const icreaseCardQuantity = (cardItems, checkoutProductToAdd) => {
+
+    const isExist = cardItems.find((cardItem) => cardItem.id === checkoutProductToAdd.id)
+
+    if(isExist) {
+        return cardItems.map((cardItem) =>
+            cardItem.id === checkoutProductToAdd.id
+            ? { ...cardItem, quantity: cardItem.quantity + 1}
+            : cardItem
+        )
+    }
+
+    return [...cardItems]
+}
+
+const decreaseCardQuantity = (cardItems, checkoutProductToAdd) => {
+
+    const isExist = cardItems.find((cardItem) => cardItem.id === checkoutProductToAdd.id)
+
+    if(isExist) {
+        return cardItems.map((cardItem) => {
+            let isPositive = cardItem.quantity ? cardItem.quantity - 1 : 0
+            return cardItem.id === checkoutProductToAdd.id
+            ? { ...cardItem, quantity: isPositive}
+            : cardItem
+        })
+    }
+
+    return [...cardItems]
+}
+
 export const CardContext = createContext({
     isCardOpen: false,
     setIsCardOpen: () => null,
@@ -49,7 +80,9 @@ export const CardContext = createContext({
     addItemToCard: () => {},
     cardCount: 0,
     removeItemFromCard: () => {},
-    totalPrice: 0
+    totalPrice: 0,
+    icreaseQuantityFromCard: () => {},
+    decreaseQuantityFromCard: () => {}
 })
 
 export const CardProvider = ({ children }) => {
@@ -57,7 +90,7 @@ export const CardProvider = ({ children }) => {
     const [ cardItems, setCardItems ] = useState([])
     const [ cardCount, setCardCount ] = useState(0)
     const [ totalPrice, setTotalPrice ] = useState(0)
-    
+
     const addItemToCard = (productToAdd) => {
         setCardItems(addCardItem(cardItems, productToAdd))
     }
@@ -66,17 +99,35 @@ export const CardProvider = ({ children }) => {
         setCardItems(removeCardItem(cardItems, id))
     }
 
+    const icreaseQuantityFromCard = (checkoutProductToAdd) => {
+        setCardItems(icreaseCardQuantity(cardItems, checkoutProductToAdd))
+    }
+
+    const decreaseQuantityFromCard = (checkoutProductToAdd) => {
+        setCardItems(decreaseCardQuantity(cardItems, checkoutProductToAdd))
+    }
+
     useEffect(() => {
         // DRUGI PARAMETAR REDUCEA JE ELEMENT(CURRENT ELEMENT)
         const total = cardItems.reduce((total, cardItem) => total + cardItem.quantity, 0)
         setCardCount(total)
 
-        const finalPrice = cardItems.reduce((total, cardItem) => total + cardItem.price, 0)
+        const finalPrice = cardItems.reduce((total, cardItem) => total + (cardItem.price * cardItem.quantity), 0)
         setTotalPrice(finalPrice)
 
     }, [ cardItems ])
 
-    const value = { isCardOpen, setIsCardOpen, cardItems, setCardItems, addItemToCard, cardCount, removeItemFromCard, totalPrice }
+    const value = {
+        isCardOpen,
+        setIsCardOpen,
+        cardItems,
+        setCardItems,
+        addItemToCard,
+        cardCount,
+        removeItemFromCard,
+        totalPrice,
+        icreaseQuantityFromCard,
+        decreaseQuantityFromCard }
 
     return <CardContext.Provider value={value}>{children}</CardContext.Provider>
 }
