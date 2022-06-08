@@ -63,7 +63,7 @@ const decreaseCardQuantity = (cardItems, checkoutProductToAdd) => {
 
     if(isExist) {
         return cardItems.map((cardItem) => {
-            let isPositive = cardItem.quantity ? cardItem.quantity - 1 : 0
+            let isPositive = cardItem.quantity ? cardItem.quantity - 1 || 1 : 1
             return cardItem.id === checkoutProductToAdd.id
             ? { ...cardItem, quantity: isPositive}
             : cardItem

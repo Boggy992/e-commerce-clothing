@@ -4,18 +4,20 @@ import { CardContext } from '../../contexts/card-dropdown.context';
 import CheckoutItem from '../checkout-item/checkout-item.component';
 
 import './checkout-directory.style.scss';
-
+const titles = [
+    'Product',
+    'Description',
+    'Quantity',
+    'Price',
+    'Remove',
+]
 const CheckoutDirectory = () => {
     const { cardItems, totalPrice } = useContext(CardContext)
 
     return (
         <div className='checkout-directory'>
             <div className='checkout-directory__titles'>
-                <h3>Product</h3>
-                <h3>Description</h3>
-                <h3>Quantity</h3>
-                <h3>Price</h3>
-                <h3>Remove</h3>
+                { titles.map(title => <h3>{ title }</h3> )}
             </div>
             <div className='checkout-directory__items'>
                 {
