@@ -111,10 +111,12 @@ export const CardProvider = ({ children }) => {
         // DRUGI PARAMETAR REDUCEA JE ELEMENT(CURRENT ELEMENT)
         const total = cardItems.reduce((total, cardItem) => total + cardItem.quantity, 0)
         setCardCount(total)
+    }, [ cardItems ])
 
+    useEffect(() => {
+        // DRUGI PARAMETAR REDUCEA JE ELEMENT(CURRENT ELEMENT)
         const finalPrice = cardItems.reduce((total, cardItem) => total + (cardItem.price * cardItem.quantity), 0)
         setTotalPrice(finalPrice)
-
     }, [ cardItems ])
 
     const value = {

@@ -16,10 +16,8 @@ const CheckoutItem = ( cardItem ) => {
     } = useContext(CardContext)
 
     const handleItemRemoving = () => removeItemFromCard(cardItem)
-
-    const handleIncreaseQuantity = () => icreaseQuantityFromCard(cardItem)
-
     const handleDecreaseQuantity = () => decreaseQuantityFromCard(cardItem)
+    const handleIncreaseQuantity = () => icreaseQuantityFromCard(cardItem)
 
     return (
         <div className='checkout-item' id={id}>
