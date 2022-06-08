@@ -28,7 +28,7 @@ const CheckoutDirectory = () => {
             </div>
             {
                 totalPrice
-                ? <h2 className='checkout-directory__total-price'>Total price: { totalPrice } $</h2>
+                ? <h2 className='checkout-directory__total-price'>TOTAL: ${ totalPrice }</h2>
                 : null
             }
         </div>

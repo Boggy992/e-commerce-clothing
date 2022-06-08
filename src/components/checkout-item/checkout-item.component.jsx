@@ -34,7 +34,7 @@ const CheckoutItem = ( cardItem ) => {
                     <CheckoutButton className='checkout-item__quantity-icon'/>
                 </button>
             </div>
-            <h4 className='checkout-item__price'>{ price } $</h4>
+            <h4 className='checkout-item__price'> { price } $</h4>
             <button className='checkout-item__remove' type='button' onClick={ handleItemRemoving }>
                 <CloseButton className='checkout-item__remove-icon'/>
             </button>
