@@ -38,8 +38,8 @@ const addCardItem = (cardItems, productToAdd) => {
     return [...cardItems, {...productToAdd}]
 }
 
-const removeCardItem = (cardItems, id) => {
-    return [...cardItems.filter((item) => item.id !== id)]
+const removeCardItem = (cardItems, productToRemove) => {
+    return [...cardItems.filter((item) => item.id !== productToRemove.id)]
 }
 
 const icreaseCardQuantity = (cardItems, checkoutProductToAdd) => {
@@ -95,8 +95,8 @@ export const CardProvider = ({ children }) => {
         setCardItems(addCardItem(cardItems, productToAdd))
     }
 
-    const removeItemFromCard = (id) => {
-        setCardItems(removeCardItem(cardItems, id))
+    const removeItemFromCard = (productToRemove) => {
+        setCardItems(removeCardItem(cardItems, productToRemove))
     }
 
     const icreaseQuantityFromCard = (checkoutProductToAdd) => {

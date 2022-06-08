@@ -10,12 +10,14 @@
 .checkout-item__quantity-wrap,
 .checkout-item__price,
 .checkout-item__remove {
-    flex: 1 1 20%;
+    flex: 1 1 23%;
+    max-width: 23%;
 }
 
 .checkout-item__remove {
     text-align: start;
     cursor: pointer;
+    padding-left: 30px;
 }
 
 .checkout-item__quantity-wrap {
@@ -25,7 +27,8 @@
 
 .checkout-item__image {
     width: 100%;
-    max-width: 170px;
+    max-width: 224px;
+    min-width: 172px;
     margin-right: 22px;
 }
 

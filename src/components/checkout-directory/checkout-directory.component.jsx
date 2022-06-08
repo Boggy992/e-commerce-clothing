@@ -17,7 +17,7 @@ const CheckoutDirectory = () => {
     return (
         <div className='checkout-directory'>
             <div className='checkout-directory__titles'>
-                { titles.map(title => <h3>{ title }</h3> )}
+                { titles.map((title, index) => <h3 key={index}>{ title }</h3> )}
             </div>
             <div className='checkout-directory__items'>
                 {
