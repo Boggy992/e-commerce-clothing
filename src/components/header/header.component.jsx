@@ -6,33 +6,39 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { signOutUser } from '../../firebase/firebase.utils';
 import CardDropdown from '../card-dropdown/card-dropdown.component';
 import CardIcon from '../card-icon/card-icon.component';
-import './header.style.scss';
+import {
+    HeaderContainer,
+    HeaderWraper,
+    LogoContainer,
+    HeaderOptions,
+    HeaderOption
+} from './header.style';
 
 const Header = () => {
     const { currentUser } = useContext(UserContext);
 
     return(
         <Fragment>
-            <div className='header'>
+            <HeaderContainer>
                 <div className='wrap'>
-                    <div className="header__container">
-                        <Link className='header__logo-container' to='/'>
+                    <HeaderWraper>
+                        <LogoContainer to='/'>
                             <Logo className='header__logo'/>
-                        </Link>
-                        <div className='header__options'>
-                            <Link className='header__option' to='/shop'>shop</Link>
-                            <Link className='header__option' to='/contact'>contact</Link>
+                        </LogoContainer>
+                        <HeaderOptions>
+                            <HeaderOption to='/shop'>shop</HeaderOption>
+                            <HeaderOption to='/contact'>contact</HeaderOption>
                             {
                                 currentUser ?
-                                <div className='header__option' onClick={ signOutUser }>SIGN OUT</div> :
-                                <Link className='header__option' to='signin'>SIGN IN</Link>
+                                <div onClick={ signOutUser }>SIGN OUT</div> :
+                                <HeaderOption to='signin'>SIGN IN</HeaderOption>
                             }
                             <CardIcon />
                             <CardDropdown />
-                        </div>
-                    </div>
+                        </HeaderOptions>
+                    </HeaderWraper>
                 </div>
-            </div>
+            </HeaderContainer>
             <Outlet />
         </Fragment>
     )

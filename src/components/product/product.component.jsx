@@ -7,6 +7,7 @@ import ShopCard from '../shop-card/shop-card.component';
 import './product.style.scss';
 
 const Product = () => {
+    // TITLE IZ usePARAMS JE URL( ako se poklapa sa products objektom elemenata, prikazuje se sadrzaj ) npr. /womens
     const { title } = useParams()
     const { products } = useContext(ProductsContext)
     const [ shopProducts, setShopProducts ] = useState(products[title])
