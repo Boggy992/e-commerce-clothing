@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ProductsContext } from '../../contexts/products.context';
@@ -14,22 +14,30 @@ const Product = () => {
 
     useEffect(() => {
         setShopProducts(products[title])
-        
+
     }, [ title, products])
 
     return (
         <>
-            <h1 className="product-title">{ title }</h1>
-            <div className="product-container">
-                {
-                    shopProducts && 
-                    shopProducts.map((shopProduct) => (
-                        <ShopCard key={shopProduct.id} {...shopProduct}/>)
-                    )
-                }
-            </div>
+        {
+            Object.keys(products).map(objTitle => (
+                objTitle === title ?
+                <Fragment key={title}>
+                    <h1 className="product-title">{ title }</h1>
+                    <div className="product-container">
+                        {
+                            shopProducts &&
+                            shopProducts.map((shopProduct) => (
+                                <ShopCard key={shopProduct.id} {...shopProduct}/>)
+                            )
+                        }
+                    </div>
+                </Fragment>
+                : null
+            ))
+        }
         </>
     )
-}   
+}
 
 export default Product

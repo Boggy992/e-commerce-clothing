@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import { UserContext } from "../../contexts/user.context";
-import { Link, Outlet } from "react-router-dom";
-import { Fragment } from "react/cjs/react.production.min";
+import { Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { signOutUser } from '../../firebase/firebase.utils';
 import CardDropdown from '../card-dropdown/card-dropdown.component';
