@@ -1,11 +1,18 @@
 import { useContext } from 'react';
 
-import { ReactComponent as CheckoutButton } from '../../assets/right-arrow.svg';
-import { ReactComponent as CloseButton } from '../../assets/close.svg';
-
 import { CardContext } from '../../contexts/card-dropdown.context';
 
-import './checkout-item.style.scss'
+import {
+    CheckoutItemStyled,
+    CheckoutItemImage,
+    CheckoutItemName,
+    CheckoutItemQuantityWrap,
+    CheckoutItemRemoveBtn,
+    CheckoutRemoveSvgIcon,
+    CheckoutItemPrice,
+    CheckoutItemQuantityBtn,
+    CheckoutItemQuantitySvg
+} from'./checkout-item.style'
 
 const CheckoutItem = ( cardItem ) => {
     const { id, name, imageUrl, price, quantity } = cardItem
@@ -20,23 +27,23 @@ const CheckoutItem = ( cardItem ) => {
     const handleIncreaseQuantity = () => icreaseQuantityFromCard(cardItem)
 
     return (
-        <div className='checkout-item' id={id}>
-            <img className='checkout-item__image' src={ imageUrl } alt={`${ name }`} />
-            <h2 className='checkout-item__name'>{ name }</h2>
-            <div className='checkout-item__quantity-wrap'>
-                <button className='checkout-item__quantity-button' type='button' onClick={ handleDecreaseQuantity }>
-                    <CheckoutButton className='checkout-item__quantity-icon'/>
-                </button>
-                <h3 className='checkout-item__quantity'>{ quantity }</h3>
-                <button className='checkout-item__quantity-button checkout--btn-right' type='button' onClick={ handleIncreaseQuantity }>
-                    <CheckoutButton className='checkout-item__quantity-icon'/>
-                </button>
-            </div>
-            <h4 className='checkout-item__price'> { price } $</h4>
-            <button className='checkout-item__remove' type='button' onClick={ handleItemRemoving }>
-                <CloseButton className='checkout-item__remove-icon'/>
-            </button>
-        </div>
+        <CheckoutItemStyled id={id}>
+            <CheckoutItemImage src={ imageUrl } alt={`${ name }`} />
+            <CheckoutItemName>{ name }</CheckoutItemName>
+            <CheckoutItemQuantityWrap>
+                <CheckoutItemQuantityBtn type='button' onClick={ handleDecreaseQuantity }>
+                    <CheckoutItemQuantitySvg/>
+                </CheckoutItemQuantityBtn>
+                <h3>{ quantity }</h3>
+                <CheckoutItemQuantityBtn type='button' onClick={ handleIncreaseQuantity }>
+                    <CheckoutItemQuantitySvg/>
+                </CheckoutItemQuantityBtn>
+            </CheckoutItemQuantityWrap>
+            <CheckoutItemPrice> { price } $</CheckoutItemPrice>
+            <CheckoutItemRemoveBtn type='button' onClick={ handleItemRemoving }>
+                <CheckoutRemoveSvgIcon/>
+            </CheckoutItemRemoveBtn>
+        </CheckoutItemStyled>
     )
 }
 

@@ -2,8 +2,12 @@ import { useContext } from 'react';
 import { CardContext } from '../../contexts/card-dropdown.context';
 
 import CheckoutItem from '../checkout-item/checkout-item.component';
-
-import './checkout-directory.style.scss';
+import {
+    CheckoutDirectoryStyled,
+    CheckoutDirectoryTitles,
+    CheckoutDirectoryTitle,
+    CheckoutDirectoryTotalPrice
+} from './checkout-directory.style';
 const titles = [
     'Product',
     'Description',
@@ -15,14 +19,14 @@ const CheckoutDirectory = () => {
     const { cardItems, totalPrice } = useContext(CardContext)
 
     return (
-        <div className='checkout-directory'>
-            <div className='checkout-directory__titles'>
+        <CheckoutDirectoryStyled>
+            <CheckoutDirectoryTitles>
                 { titles.map((title, index) => <h3 key={index}>{ title }</h3> )}
-            </div>
-            <div className='checkout-directory__items'>
+            </CheckoutDirectoryTitles>
+            <div>
                 {
                     !cardItems.length
-                    ? <h1 className='checkout-directory__title'>There is no items in shoping card.</h1>
+                    ? <CheckoutDirectoryTitle>There is no items in shoping card.</CheckoutDirectoryTitle>
                     : cardItems.map((cardItem) =>
                         <CheckoutItem key={cardItem.id} {...cardItem}/>
                     )
@@ -30,10 +34,10 @@ const CheckoutDirectory = () => {
             </div>
             {
                 totalPrice
-                ? <h2 className='checkout-directory__total-price'>TOTAL: ${ totalPrice }</h2>
+                ? <CheckoutDirectoryTotalPrice>TOTAL: ${ totalPrice }</CheckoutDirectoryTotalPrice>
                 : null
             }
-        </div>
+        </CheckoutDirectoryStyled>
     )
 }
 

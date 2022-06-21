@@ -12,6 +12,7 @@ import {
     HeaderOptions,
     HeaderOption
 } from './header.style';
+import { Wrap } from '../../layout.style';
 
 const Header = () => {
     const { currentUser } = useContext(UserContext);
@@ -19,10 +20,10 @@ const Header = () => {
     return(
         <Fragment>
             <HeaderContainer>
-                <div className='wrap'>
+                <Wrap>
                     <HeaderWraper>
                         <LogoContainer to='/'>
-                            <Logo className='header__logo'/>
+                            <Logo/>
                         </LogoContainer>
                         <HeaderOptions>
                             <HeaderOption to='/shop'>shop</HeaderOption>
@@ -36,7 +37,7 @@ const Header = () => {
                             <CardDropdown />
                         </HeaderOptions>
                     </HeaderWraper>
-                </div>
+                </Wrap>
             </HeaderContainer>
             <Outlet />
         </Fragment>

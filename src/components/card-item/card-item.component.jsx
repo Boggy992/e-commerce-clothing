@@ -1,15 +1,19 @@
-import './card-item.style.scss';
+import {
+    CardItemStyled,
+    CardSmallImage,
+    CardQuantity
+} from './card-item.style';
 
 const CardItem = ({ name, imageUrl, price, quantity }) => {
     return (
-        <div className='card-item'>
-            <img className='card-img-small' src={imageUrl} alt={imageUrl}></img>
-            <div className='card-item-wrapper'>
+        <CardItemStyled>
+            <CardSmallImage src={imageUrl} alt={imageUrl}></CardSmallImage>
+            <div>
                 <h3>{name}</h3>
-                <span className='card-quantity'>{quantity}</span>
+                <CardQuantity>{quantity}</CardQuantity>
                 <span>{price}</span>
             </div>
-        </div>
+        </CardItemStyled>
     )
 }
 

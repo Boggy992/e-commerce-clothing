@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route, Routes } from "react-router-dom";
 import './App.css';
 
@@ -7,8 +7,6 @@ import ShopPage from './pages/shop-page/shop-page.content';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout-page/checkout-page.component';
-import { Fragment } from 'react/cjs/react.production.min';
-
 class App extends React.Component {
   render() {
     return (

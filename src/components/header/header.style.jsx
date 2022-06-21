@@ -32,6 +32,7 @@ export const HeaderOption = styled(Link)`
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
+    position: ${({ isPositionRelative }) => isPositionRelative ? 'relative' : null};
     & + & {
         margin-left: 25px;
     }
