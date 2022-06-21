@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { ProductsContext } from '../../contexts/products.context';
 import ShopCard from '../shop-card/shop-card.component';
 
-import './product.style.scss';
+import { ProductTitle, ProductContainer } from './product.style';
 
 const Product = () => {
     // TITLE IZ usePARAMS JE URL( ako se poklapa sa products objektom elemenata, prikazuje se sadrzaj ) npr. /womens
@@ -23,15 +23,15 @@ const Product = () => {
             Object.keys(products).map(objTitle => (
                 objTitle === title ?
                 <Fragment key={title}>
-                    <h1 className="product-title">{ title }</h1>
-                    <div className="product-container">
+                    <ProductTitle>{ title }</ProductTitle>
+                    <ProductContainer>
                         {
                             shopProducts &&
                             shopProducts.map((shopProduct) => (
                                 <ShopCard key={shopProduct.id} {...shopProduct}/>)
                             )
                         }
-                    </div>
+                    </ProductContainer>
                 </Fragment>
                 : null
             ))

@@ -2,14 +2,15 @@ import React from "react";
 
 import Directory from '../../components/directory/directory.component.jsx';
 
-import './homepage.style.scss'
+import { Wrap } from "../../layout.style";
+import { HomepageStyled } from './homepage.style'
 
 const HomePage = () => (
-    <div className='homepage'>
-        <div className='wrap'>
+    <HomepageStyled>
+        <Wrap>
             <Directory />
-        </div>
-    </div>
+        </Wrap>
+    </HomepageStyled>
 );
 
 export default HomePage;

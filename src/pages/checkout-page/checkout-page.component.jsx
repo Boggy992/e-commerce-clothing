@@ -1,15 +1,14 @@
-import './checkout-page.style.scss';
-
+import { Wrap } from '../../layout.style';
 import CheckoutDirectory from '../../components/checkout-directory/checkout-directory.component';
 
 const CheckoutPage = () => {
     return (
-        <div className='checkout-page'>
-            <div className='wrap'>
+        <div>
+            <Wrap>
                 <CheckoutDirectory />
-            </div>
+            </Wrap>
         </div>
     )
-} 
+}
 
 export default CheckoutPage

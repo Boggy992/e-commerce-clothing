@@ -2,7 +2,7 @@ import React from "react";
 
 import Card from '../../components/card/card.component';
 
-import './directory.style.scss';
+import { HompageContainerStyled } from './directory.style';
 
 class Directory extends React.Component {
     constructor() {
@@ -48,13 +48,13 @@ class Directory extends React.Component {
 
     render() {
         return (
-            <div className='homepage__container'>
+            <HompageContainerStyled>
                 {
                     this.state.sections.map(({ id, ...rest }) => (
                         <Card key={id} {...rest}/>
                     ))
                 }
-            </div>
+            </HompageContainerStyled>
         )
     }
 }
