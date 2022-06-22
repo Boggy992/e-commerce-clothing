@@ -100,9 +100,9 @@ class SignIn extends React.Component {
                     />
                     {
                         this.state.flag !== null ?
-                            (this.state.flag ?
-                            <span className='sign-in__alert'>Email or password is inccorect.</span> :
-                            <span className='sign-in__success'>Success</span>) :
+                        (this.state.flag ?
+                        <span className='sign-in__alert'>Email or password is inccorect.</span> :
+                        <span className='sign-in__success'>Success</span>) :
                         null
                     }
                     <div className='sign-in__custom-buttons'>

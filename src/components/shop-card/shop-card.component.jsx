@@ -4,7 +4,14 @@ import { CardContext } from '../../contexts/card-dropdown.context';
 
 import CustomButton from '../custom-button/custom-button.component';
 
-import './shop-card.style.scss';
+import {
+    ShopCardImage,
+    ShopCardWrapper,
+    ShopCardImageContainer,
+    ShopCardText,
+    ShopCardTitle,
+    ShopCardPrice
+} from './shop-card.style';
 
 const ShopCard = ({ id, imageUrl, name, price }) => {
     const { addItemToCard } = useContext(CardContext)
@@ -21,16 +28,16 @@ const ShopCard = ({ id, imageUrl, name, price }) => {
     }
 
     return (
-        <div className='shop-card__wrapper'>
-            <div className='shop-card__image-container'>
-                <div className='shop-card__image' style={{ backgroundImage: `url(${imageUrl})` }}></div>
+        <ShopCardWrapper>
+            <ShopCardImageContainer>
+                <ShopCardImage imageUrl={imageUrl}></ShopCardImage>
                 <CustomButton isCardButton onClick={ handleItemsToCard }>Add to card</CustomButton>
-            </div>
-            <div className='shop-card__text'>
-                <span className='shop-card__title'>{name}</span>
-                <span className='shop-card__price'>{`$${price}`}</span>
-            </div>
-        </div>
+            </ShopCardImageContainer>
+            <ShopCardText>
+                <ShopCardTitle>{name}</ShopCardTitle>
+                <ShopCardPrice>{`$${price}`}</ShopCardPrice>
+            </ShopCardText>
+        </ShopCardWrapper>
     )
 }
 
