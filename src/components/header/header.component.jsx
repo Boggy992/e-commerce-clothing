@@ -30,7 +30,7 @@ const Header = () => {
                             <HeaderOption to='/contact'>contact</HeaderOption>
                             {
                                 currentUser ?
-                                <div onClick={ signOutUser }>SIGN OUT</div> :
+                                <HeaderOption as='span' onClick={ signOutUser }>SIGN OUT</HeaderOption> :
                                 <HeaderOption to='signin'>SIGN IN</HeaderOption>
                             }
                             <CardIcon />
