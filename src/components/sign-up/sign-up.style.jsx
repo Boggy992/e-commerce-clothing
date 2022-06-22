@@ -6,10 +6,10 @@ export const SignUp = styled.div`
 `
 
 export const SignUpTitle = styled.h2`
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 `
 
-export const SignUpSubtitle = styled.h2`
+export const SignUpSubtitle = styled.h3`
     display: inline-block;
     margin-bottom: 15px;
 `

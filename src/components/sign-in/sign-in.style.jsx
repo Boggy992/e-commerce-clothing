@@ -8,6 +8,7 @@ export const SignInStyled = styled.div`
 export const SignInTitle = styled.h2`
     flex: 1 1 0;
     max-width: 400px;
+    margin-bottom: 5px;
 `
 
 export const SignInSubtitle = styled.h3`

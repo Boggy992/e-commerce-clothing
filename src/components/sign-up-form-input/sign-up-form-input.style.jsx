@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const shrinkLabel = css`
+    font-size: 16px;
+    transform: translateY(-170%);
+`
 
 export const SignUpInputWrap = styled.div`
     display: flex;
@@ -8,13 +13,15 @@ export const SignUpInputWrap = styled.div`
 `
 
 export const SignUpLabel = styled.label`
-    font-size: ${({ hasValue }) => hasValue ? '16px' : '18px'};
+    font-size: 18px;
     position: absolute;
     left: 10px;
     top: 50%;
-    transform: ${({ hasValue }) => hasValue ? 'translateY(-170%)' : 'translateY(-50%)'};
+    transform: translateY(-50%);
     pointer-events: none;
     transition: 0.3s ease;
+
+    ${({hasValue}) => hasValue && shrinkLabel}
 `
 
 export const SignUpInput = styled.input`
