@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+// isto kao modifier u scss-u, blok propertija, posle dodeljujem varijabli
+// odnosno komponenti kojoj treba kada se ispuni uslov
 const shrinkLabel = css`
     font-size: 16px;
     transform: translateY(-170%);
