@@ -1,9 +1,8 @@
-.shop-card__container {
-    display: flex;
-    flex-wrap: wrap;
-}
+import styled from 'styled-components';
 
-.shop-page__link {
+import { Link } from 'react-router-dom';
+
+export const ShopCardLink = styled(Link)`
     display: inline-block;
     color: #1b1b1b;
     margin-bottom: 20px;
@@ -14,4 +13,9 @@
     &:hover {
         text-decoration: underline;
     }
-}
+`
+
+export const ShopCardContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`

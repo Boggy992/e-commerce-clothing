@@ -6,7 +6,12 @@ import {
     createAuthUserWithEmailAndPassword
 } from "../../firebase/firebase.utils.js";
 import SignUpFormInput from '../sign-up-form-input/sign-up-form-input.component';
-import "../sign-up/sign-up.style.scss"
+import {
+    SignUp,
+    SignUpTitle,
+    SignUpSubtitle,
+    SignUpFormStyled
+} from "./sign-up.style"
 
 const defaultInputValues = {
     "displayName": '',
@@ -55,10 +60,10 @@ const SignUpForm = () => {
     }
 
     return (
-        <div className="sign-up">
-            <h2 className="sign-up__title">I do not have a account</h2>
-            <h3 className="sign-up__subtitle">Sign up with your email and password</h3>
-            <form className="sign-up__form" onSubmit={handleSubmit}>
+        <SignUp>
+            <SignUpTitle>I do not have a account</SignUpTitle>
+            <SignUpSubtitle>Sign up with your email and password</SignUpSubtitle>
+            <SignUpFormStyled onSubmit={handleSubmit}>
                 <SignUpFormInput
                     name='displayName'
                     type='text'
@@ -97,8 +102,8 @@ const SignUpForm = () => {
                 }
 
                 <button className="custom-button" type="submit">sign up</button>
-            </form>
-        </div>
+            </SignUpFormStyled>
+        </SignUp>
     )
 }
 

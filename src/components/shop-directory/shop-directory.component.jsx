@@ -3,8 +3,6 @@ import React, { useContext } from "react";
 import { ProductsContext } from '../../contexts/products.context';
 import ShopPreview from '../../components/shop-preview/shop-preview.component';
 
-import './shop-directory.style.scss';
-
 const ShopDirectory = () => {
     const { products } = useContext(ProductsContext);
 

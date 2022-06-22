@@ -17,7 +17,15 @@ import {
     signInUserWithEmailAndPassword
 } from "../../firebase/firebase.utils.js";
 
-import './sign-in.style.scss';
+import {
+    SignInStyled,
+    SignInTitle,
+    SignInSubtitle,
+    SignInForm,
+    SignInCustomButtons,
+    SignInAlert,
+    SignInSuccess
+} from'./sign-in.style';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -78,12 +86,11 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <div className='sign-in'>
-                <h2 className='sign-in__title'>I already have an account</h2>
-                <h3 className='sign-in__subtitle'>Sign in with your email and password</h3>
-                <form className='sign-in__form' onSubmit={this.submitForm}>
+            <SignInStyled>
+                <SignInTitle>I already have an account</SignInTitle>
+                <SignInSubtitle>Sign in with your email and password</SignInSubtitle>
+                <SignInForm onSubmit={this.submitForm}>
                     <FormInput
-                        className='sign-in__input'
                         name='email'
                         type='email'
                         value={this.state.email}
@@ -91,7 +98,6 @@ class SignIn extends React.Component {
                         signInValidation={this.signInValidation}
                     />
                     <FormInput
-                        className='sign-in__input'
                         name='password'
                         type='password'
                         label=''
@@ -101,16 +107,16 @@ class SignIn extends React.Component {
                     {
                         this.state.flag !== null ?
                         (this.state.flag ?
-                        <span className='sign-in__alert'>Email or password is inccorect.</span> :
-                        <span className='sign-in__success'>Success</span>) :
+                        <SignInAlert>Email or password is inccorect.</SignInAlert> :
+                        <SignInSuccess>Success</SignInSuccess>) :
                         null
                     }
-                    <div className='sign-in__custom-buttons'>
+                    <SignInCustomButtons>
                         <CustomButton type='submit' onClick={this.logUserWithEmailAndPassword}>Sign in</CustomButton>
                         <CustomButton type='submit' isGoogleSignIn onClick={this.logGoogleUser}>Sign in with google</CustomButton>
-                    </div>
-                </form>
-            </div>
+                    </SignInCustomButtons>
+                </SignInForm>
+            </SignInStyled>
         )
     }
 }
