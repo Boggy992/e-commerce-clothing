@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 
 const addCardItem = (cardItems, productToAdd) => {
     // const existingCardItems = [...cardItems];
@@ -85,11 +85,56 @@ export const CardContext = createContext({
     decreaseQuantityFromCard: () => {}
 })
 
+const ACTION = {
+    TOOGLE_CARD_DROPDOWN: "TOOGLE_CARD_DROPDOWN",
+    SET_CARD_ITEMS: "SET_CARD_ITEMS",
+    SET_CARD_COUNT: "SET_CARD_COUNT",
+    SET_TOTAL_PRICE: "SET_TOTAL_PRICE"
+}
+
+const reducer = (state, action) => {
+    const { type, payload } = action
+
+    switch(type) {
+        case ACTION.TOOGLE_CARD_DROPDOWN:
+            return { ...state, isCardOpen: payload }
+        case ACTION.SET_CARD_ITEMS:
+            return { ...state, cardItems: payload }
+        case ACTION.SET_CARD_COUNT:
+            return { ...state, cardCount: payload }
+        case ACTION.SET_TOTAL_PRICE:
+            return { ...state, totalPrice: payload }
+        default:
+            throw new Error(`There is error in ${type}`)
+    }
+}
+
+const INITIAL_STATE = {
+    isCardOpen: false,
+    cardItems: [],
+    cardCount: 0,
+    totalPrice: 0
+}
+
 export const CardProvider = ({ children }) => {
-    const [ isCardOpen, setIsCardOpen ] = useState(false)
-    const [ cardItems, setCardItems ] = useState([])
-    const [ cardCount, setCardCount ] = useState(0)
-    const [ totalPrice, setTotalPrice ] = useState(0)
+    const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE)
+    const { isCardOpen, cardItems, cardCount, totalPrice } = state
+
+    const setIsCardOpen = () => {
+        dispatch({ type: ACTION.TOOGLE_CARD_DROPDOWN, payload: !isCardOpen })
+    }
+
+    const setCardItems = (addCardItem) => {
+        dispatch({ type: ACTION.SET_CARD_ITEMS, payload: addCardItem })
+    }
+
+    const setCardCount = (totalItems) => {
+        dispatch({ type: ACTION.SET_CARD_COUNT, payload: totalItems })
+    }
+
+    const setTotalPrice = (finalPrice) => {
+        dispatch({ type: ACTION.SET_TOTAL_PRICE, payload: finalPrice })
+    }
 
     const addItemToCard = (productToAdd) => {
         setCardItems(addCardItem(cardItems, productToAdd))
