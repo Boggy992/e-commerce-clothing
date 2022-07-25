@@ -11,7 +11,7 @@ const Product = () => {
     const { title } = useParams()
     const { products } = useContext(ProductsContext)
     const [ shopProducts, setShopProducts ] = useState(products[title])
-
+    
     useEffect(() => {
         setShopProducts(products[title])
 
@@ -26,6 +26,7 @@ const Product = () => {
                     <ProductTitle>{ title }</ProductTitle>
                     <ProductContainer>
                         {
+                            // prvi put je vrednost undefined samo ako postoji vrednost shopProducts renderuj ShopCards
                             shopProducts &&
                             shopProducts.map((shopProduct) => (
                                 <ShopCard key={shopProduct.id} {...shopProduct}/>)

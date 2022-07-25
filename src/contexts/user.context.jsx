@@ -1,6 +1,6 @@
 import {
     createContext,
-    useState,
+    useReducer,
     useEffect
 } from 'react';
 
@@ -15,8 +15,33 @@ export const UserContext = createContext({
     setCurrentUser: () => null,
 })
 
+const ACTION = {
+    SET_CURRENT_USER: 'SET_CURRENT_USER'
+}
+
+const reducer = (state, action) => {
+    const { type, payload } = action
+
+    switch(type) {
+        case ACTION.SET_CURRENT_USER: 
+            return { ...state, currentUser: payload }
+        default:
+            throw new Error(`Unhendled type ${type} in reducer`)
+    }
+}
+
+const INITIAL_STATE = {
+    currentUser: null
+}
+
 export const UserProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState(null)
+    const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE)
+    const { currentUser } = state
+
+    const setCurrentUser = (currentUser) => {
+        dispatch({ type: ACTION.SET_CURRENT_USER, payload: currentUser })
+    }
+
     const value = { currentUser, setCurrentUser }
 
     useEffect(() => {

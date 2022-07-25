@@ -5,6 +5,7 @@ import ShopPreview from '../../components/shop-preview/shop-preview.component';
 
 const ShopDirectory = () => {
     const { products } = useContext(ProductsContext);
+    console.log(products);
 
     return (
         <>
