@@ -1,7 +1,7 @@
 import {
     createContext,
-    useReducer,
-    useEffect
+    useEffect,
+    useReducer
 } from 'react';
 
 import {
@@ -12,21 +12,24 @@ import {
 // as the actual value you want to access
 export const UserContext = createContext({
     currentUser: null,
-    setCurrentUser: () => null,
+    setCurrentUser: () => null
 })
 
 const ACTION = {
     SET_CURRENT_USER: 'SET_CURRENT_USER'
 }
 
+//reducer je funkcija koja vraca novi objekat
 const reducer = (state, action) => {
+    // action.type = string
+    // action.payload = vrednost
     const { type, payload } = action
 
     switch(type) {
-        case ACTION.SET_CURRENT_USER: 
-            return { ...state, currentUser: payload }
+        case ACTION.SET_CURRENT_USER:
+            return {...state, currentUser: payload}
         default:
-            throw new Error(`Unhendled type ${type} in reducer`)
+            return state
     }
 }
 
@@ -35,11 +38,11 @@ const INITIAL_STATE = {
 }
 
 export const UserProvider = ({ children }) => {
-    const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE)
-    const { currentUser } = state
+    // dispatch je setovanje vrednosti
+    const [{ currentUser }, dispatch] = useReducer(reducer, INITIAL_STATE)
 
-    const setCurrentUser = (currentUser) => {
-        dispatch({ type: ACTION.SET_CURRENT_USER, payload: currentUser })
+    const setCurrentUser = (user) => {
+        dispatch({ type: ACTION.SET_CURRENT_USER, payload: user})
     }
 
     const value = { currentUser, setCurrentUser }
@@ -51,7 +54,6 @@ export const UserProvider = ({ children }) => {
             }
             setCurrentUser(user)
         })
-
 
         return unsubscribe
     }, [])
