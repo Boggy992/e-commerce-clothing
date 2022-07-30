@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import ACCORDIONS_DATA from '../../accordions-data';
-import {
-    AccordionStyled,
-    AccordionWrapStyled,
-    AccordionCardStyled,
-    AccordionCounterStyled,
-    AccordionTitleStyled,
-    AccordionIconStyled,
-    AccordionTextWrapStyled,
-    AccordionTextStyled
-} from './accordion.style.jsx';
+import AccordionItem from '../accordion-item/accordion-item.component';
+import { AccordionStyled } from './accordion.style.jsx';
 
 const Accordion = () => {
     const accordions = [...ACCORDIONS_DATA]
@@ -36,22 +28,17 @@ const Accordion = () => {
     return (
         <AccordionStyled>
             {
-                accordions.map(({ id, title, text }, index) => {
-                    return (
-                        <AccordionWrapStyled key={id}>
-                            <AccordionCardStyled id={id} onClick={handleClick}>
-                                <AccordionCounterStyled>{id + 1}</AccordionCounterStyled>
-                                <AccordionTitleStyled>{title}</AccordionTitleStyled>
-                                <AccordionIconStyled isExpanded={currentId === index}></AccordionIconStyled>
-                            </AccordionCardStyled>
-                            <AccordionTextWrapStyled 
-                                hasHeight={currentId === index && currentHeight} 
-                                isExpanded={currentId === index}>
-                                <AccordionTextStyled>{text}</AccordionTextStyled>
-                            </AccordionTextWrapStyled>
-                        </AccordionWrapStyled>
-                    )
-                })
+                accordions.map(({ id, ...rest }, index) => (
+                    <AccordionItem 
+                        key={id} 
+                        id={id} 
+                        {...rest}
+                        index={index}
+                        onHandleClick={handleClick}
+                        currentId={currentId}
+                        currentHeight={currentHeight}
+                    />
+                ))
             }
         </AccordionStyled>
     )
