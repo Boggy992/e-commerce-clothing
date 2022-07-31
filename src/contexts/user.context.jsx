@@ -12,11 +12,14 @@ import {
 // as the actual value you want to access
 export const UserContext = createContext({
     currentUser: null,
-    setCurrentUser: () => null
+    setCurrentUser: () => null,
+    toggleUserLogged: null,
+    setToggleUserLogged: () => null
 })
 
 const ACTION = {
-    SET_CURRENT_USER: 'SET_CURRENT_USER'
+    SET_CURRENT_USER: 'SET_CURRENT_USER',
+    SET_IF_USER_LOGGED: 'SET_IF_USER_LOGGED'
 }
 
 //reducer je funkcija koja vraca novi objekat
@@ -28,24 +31,31 @@ const reducer = (state, action) => {
     switch(type) {
         case ACTION.SET_CURRENT_USER:
             return {...state, currentUser: payload}
+        case ACTION.SET_IF_USER_LOGGED:
+            return {...state, toggleUserLogged: payload}
         default:
             return state
     }
 }
 
 const INITIAL_STATE = {
-    currentUser: null
+    currentUser: null,
+    toggleUserLogged: null
 }
 
 export const UserProvider = ({ children }) => {
     // dispatch je setovanje vrednosti
-    const [{ currentUser }, dispatch] = useReducer(reducer, INITIAL_STATE)
+    const [{ currentUser, toggleUserLogged }, dispatch] = useReducer(reducer, INITIAL_STATE)
 
     const setCurrentUser = (user) => {
         dispatch({ type: ACTION.SET_CURRENT_USER, payload: user})
     }
 
-    const value = { currentUser, setCurrentUser }
+    const setToggleUserLogged = (toggleUserLogged) => {
+        dispatch({ type: ACTION.SET_IF_USER_LOGGED, payload: toggleUserLogged})
+    }
+
+    const value = { currentUser, setCurrentUser, toggleUserLogged, setToggleUserLogged }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChangedListener((user) => {

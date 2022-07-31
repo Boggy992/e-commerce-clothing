@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { CardContext } from '../../contexts/card-dropdown.context';
-
+import { UserContext } from '../../contexts/user.context';
 import CustomButton from '../custom-button/custom-button.component';
 
 import {
@@ -15,6 +15,7 @@ import {
 
 const ShopCard = ({ id, imageUrl, name, price }) => {
     const { addItemToCard } = useContext(CardContext)
+    const { currentUser, setToggleUserLogged } = useContext(UserContext)
 
     const handleItemsToCard = () => {
         const extendedShopCard = {
@@ -27,17 +28,27 @@ const ShopCard = ({ id, imageUrl, name, price }) => {
         addItemToCard(extendedShopCard)
     }
 
+    const handleLogedInUser = () => {
+        if(!currentUser) {
+            setToggleUserLogged(false)
+            return
+        }
+
+        setToggleUserLogged(true)
+        handleItemsToCard()
+    }
+
     return (
-        <ShopCardWrapper>
-            <ShopCardImageContainer>
-                <ShopCardImage imageUrl={imageUrl}></ShopCardImage>
-                <CustomButton isCardButton onClick={ handleItemsToCard }>Add to card</CustomButton>
-            </ShopCardImageContainer>
-            <ShopCardText>
-                <ShopCardTitle>{name}</ShopCardTitle>
-                <ShopCardPrice>{`$${price}`}</ShopCardPrice>
-            </ShopCardText>
-        </ShopCardWrapper>
+            <ShopCardWrapper>
+                <ShopCardImageContainer>
+                    <ShopCardImage imageUrl={imageUrl}></ShopCardImage>
+                    <CustomButton isCardButton onClick={ handleLogedInUser }>Add to card</CustomButton>
+                </ShopCardImageContainer>
+                <ShopCardText>
+                    <ShopCardTitle>{name}</ShopCardTitle>
+                    <ShopCardPrice>{`$${price}`}</ShopCardPrice>
+                </ShopCardText>
+            </ShopCardWrapper>
     )
 }
 

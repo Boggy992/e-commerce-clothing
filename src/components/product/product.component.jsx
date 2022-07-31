@@ -2,7 +2,9 @@ import { useContext, useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ProductsContext } from '../../contexts/products.context';
+import { UserContext } from '../../contexts/user.context';
 import ShopCard from '../shop-card/shop-card.component';
+import LoggedOffUserPopup from '../logged-off-user-popup/logged-off-user-popup.component';
 
 import { ProductTitle, ProductContainer } from './product.style';
 
@@ -11,11 +13,16 @@ const Product = () => {
     const { title } = useParams()
     const { products } = useContext(ProductsContext)
     const [ shopProducts, setShopProducts ] = useState(products[title])
+    const { currentUser, toggleUserLogged, setToggleUserLogged } = useContext(UserContext)
     
     useEffect(() => {
         setShopProducts(products[title])
-
     }, [ title, products])
+
+    useEffect(() => {
+        setToggleUserLogged(true)
+        // eslint-disable-next-line
+    }, [ products ])
 
     return (
         <>
@@ -36,6 +43,9 @@ const Product = () => {
                 </Fragment>
                 : null
             ))
+        }
+        {
+            !currentUser && !toggleUserLogged ? <LoggedOffUserPopup /> : null
         }
         </>
     )
