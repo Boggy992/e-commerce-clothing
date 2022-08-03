@@ -11,7 +11,9 @@ import { UserContext } from '../../contexts/user.context';
 const LoggedOffUserPopup = () => {
     const { setToggleUserLogged } = useContext(UserContext)
 
-    const closePopup = () => setToggleUserLogged(true)
+    const closePopup = () => {
+        setToggleUserLogged(true)
+    }
 
     return (
         <LoggedOffUserStyled>

@@ -8,11 +8,11 @@ import ShopPreview from '../../components/shop-preview/shop-preview.component';
 const ShopDirectory = () => {
     const { products } = useContext(ProductsContext);
     const { currentUser, toggleUserLogged, setToggleUserLogged } = useContext(UserContext)
-    
+
     useEffect(() => {
         setToggleUserLogged(true)
-        // eslint-disable-next-line 
-    }, [ products ])
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <>
@@ -23,7 +23,7 @@ const ShopDirectory = () => {
                 ))
             }
             {
-                !currentUser && !toggleUserLogged ? <LoggedOffUserPopup /> : null
+                !currentUser && !toggleUserLogged && <LoggedOffUserPopup />
             }
         </>
     )

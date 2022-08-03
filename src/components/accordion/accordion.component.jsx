@@ -7,7 +7,7 @@ const Accordion = () => {
     const accordions = [...ACCORDIONS_DATA]
     const [currentId, setCurrentId] = useState(null)
     const [currentHeight, setCurrentHeight] = useState(0)
-    
+
     const handleClick = (e) => {
         const { id } = e.currentTarget
         const convertedId = Number(id)
@@ -19,7 +19,7 @@ const Accordion = () => {
             setCurrentId(convertedId)
             setCurrentHeight(currentTextElementHeight)
             return
-        } 
+        }
 
         setCurrentId(null)
         setCurrentHeight(0)
@@ -29,9 +29,9 @@ const Accordion = () => {
         <AccordionStyled>
             {
                 accordions.map(({ id, ...rest }, index) => (
-                    <AccordionItem 
-                        key={id} 
-                        id={id} 
+                    <AccordionItem
+                        key={id}
+                        id={id}
                         {...rest}
                         index={index}
                         onHandleClick={handleClick}

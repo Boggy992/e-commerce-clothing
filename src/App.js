@@ -8,6 +8,7 @@ import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout-page/checkout-page.component';
 import Accordion from './components/accordion/accordion.component';
+import Movies from './components/movies/movies.component';
 class App extends React.Component {
   render() {
     return (
@@ -19,6 +20,7 @@ class App extends React.Component {
               <Route path='/signin' element={<SignInAndSignUpPage />} />
               <Route path='/checkout' element={<CheckoutPage />} />
               <Route path='/accordion' element={<Accordion />} />
+              <Route path='/movies' element={<Movies /> } />
             </Route>
           </Routes>
       </Fragment>

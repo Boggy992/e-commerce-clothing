@@ -1,0 +1,25 @@
+.movie__wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie__container {
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    &:not(:nth-child(4n)) {
+        margin-right: 26px;
+    }
+}
+
+.movie__favorite-button {
+    display: inline-block;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.favorite__title {
+    display: inline-block;
+    margin: 45px 0;
+    padding: 25px;
+    background-color: aqua;
+}

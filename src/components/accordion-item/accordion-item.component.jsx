@@ -16,8 +16,8 @@ const AccordionItem = ({ id, title, text, index, onHandleClick, currentId, curre
                 <AccordionTitleStyled>{title}</AccordionTitleStyled>
                 <AccordionIconStyled isExpanded={currentId === index}></AccordionIconStyled>
             </AccordionCardStyled>
-            <AccordionTextWrapStyled 
-                hasHeight={currentId === index && currentHeight} 
+            <AccordionTextWrapStyled
+                hasHeight={currentId === index && currentHeight}
                 isExpanded={currentId === index}>
                 <AccordionTextStyled>{text}</AccordionTextStyled>
             </AccordionTextWrapStyled>

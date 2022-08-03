@@ -14,7 +14,7 @@ const Product = () => {
     const { products } = useContext(ProductsContext)
     const [ shopProducts, setShopProducts ] = useState(products[title])
     const { currentUser, toggleUserLogged, setToggleUserLogged } = useContext(UserContext)
-    
+
     useEffect(() => {
         setShopProducts(products[title])
     }, [ title, products])
@@ -22,31 +22,31 @@ const Product = () => {
     useEffect(() => {
         setToggleUserLogged(true)
         // eslint-disable-next-line
-    }, [ products ])
+    }, [])
 
     return (
         <>
-        {
-            Object.keys(products).map(objTitle => (
-                objTitle === title ?
-                <Fragment key={title}>
-                    <ProductTitle>{ title }</ProductTitle>
-                    <ProductContainer>
-                        {
-                            // prvi put je vrednost undefined samo ako postoji vrednost shopProducts renderuj ShopCards
-                            shopProducts &&
-                            shopProducts.map((shopProduct) => (
-                                <ShopCard key={shopProduct.id} {...shopProduct}/>)
-                            )
-                        }
-                    </ProductContainer>
-                </Fragment>
-                : null
-            ))
-        }
-        {
-            !currentUser && !toggleUserLogged ? <LoggedOffUserPopup /> : null
-        }
+            {
+                Object.keys(products).map(objTitle => (
+                    objTitle === title ?
+                    <Fragment key={title}>
+                        <ProductTitle>{ title }</ProductTitle>
+                        <ProductContainer>
+                            {
+                                // prvi put je vrednost undefined samo ako postoji vrednost shopProducts renderuj ShopCards
+                                shopProducts &&
+                                shopProducts.map((shopProduct) => (
+                                    <ShopCard key={shopProduct.id} {...shopProduct}/>)
+                                )
+                            }
+                        </ProductContainer>
+                    </Fragment>
+                    : null
+                ))
+            }
+            {
+                !currentUser && !toggleUserLogged && <LoggedOffUserPopup />
+            }
         </>
     )
 }
